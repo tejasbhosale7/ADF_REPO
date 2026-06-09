@@ -2,7 +2,7 @@
 	"name": "CopyPipeline_PR1_Trg1",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
