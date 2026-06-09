@@ -1,0 +1,7 @@
+{
+	"name": "Copy_AzureDB_ADLS",
+	"properties": {
+		"description": "To copy data from Azure SQL DB to Blob storage",
+		"annotations": []
+	}
+}
