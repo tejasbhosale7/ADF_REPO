@@ -1,0 +1,10 @@
+{
+	"name": "pl_binary_copy_from_blob_to_blob",
+	"properties": {
+		"description": "copy using parameters",
+		"folder": {
+			"name": "parameters_and_variables"
+		},
+		"annotations": []
+	}
+}
