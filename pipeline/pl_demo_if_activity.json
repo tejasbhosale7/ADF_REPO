@@ -1,0 +1,74 @@
+{
+	"name": "pl_demo_if_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "If Sunday",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "set current_timestamp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(0,dayOfWeek('current_ts'))",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Not Sunday",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Sunday",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "set current_timestamp",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current_ts",
+					"value": {
+						"value": "@utcNow()",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"current_ts": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "if_condition"
+		},
+		"annotations": []
+	}
+}
