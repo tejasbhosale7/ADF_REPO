@@ -2,6 +2,63 @@
 	"name": "pl_binary_copy_from_blob_to_blob",
 	"properties": {
 		"description": "copy using parameters",
+		"activities": [
+			{
+				"name": "Copy data from source to sink",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "dsrc_blob_general_binary_param",
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": {
+								"value": "@pipeline().parameters.source_file_name",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "dsin_blob_general_binary_param",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"source_file_name": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "parameters_and_variables"
 		},
