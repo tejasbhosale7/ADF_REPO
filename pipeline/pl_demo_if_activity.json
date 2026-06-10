@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(0,dayOfWeek('current_ts'))",
+						"value": "@equals(0,dayOfWeek(variables('current_ts')))",
 						"type": "Expression"
 					},
 					"ifFalseActivities": [
