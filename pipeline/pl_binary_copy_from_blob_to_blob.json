@@ -52,7 +52,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"file_name": {
-								"value": "@pipeline().parameters.source_file_name",
+								"value": "@pipeline().parameters.sink_file_name",
 								"type": "Expression"
 							}
 						}
@@ -62,6 +62,9 @@
 		],
 		"parameters": {
 			"source_file_name": {
+				"type": "string"
+			},
+			"sink_file_name": {
 				"type": "string"
 			}
 		},
