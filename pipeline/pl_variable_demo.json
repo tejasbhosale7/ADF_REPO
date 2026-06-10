@@ -1,0 +1,90 @@
+{
+	"name": "pl_variable_demo",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var_1",
+					"value": {
+						"value": "@pipeline().DataFactory",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var_2",
+					"value": "some text here"
+				}
+			},
+			{
+				"name": "Set variable3",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var_3",
+					"value": {
+						"value": "@pipeline().parameters.param_1",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"param_1": {
+				"type": "string",
+				"defaultValue": "v1"
+			}
+		},
+		"variables": {
+			"var_1": {
+				"type": "String"
+			},
+			"var_2": {
+				"type": "String"
+			},
+			"var_3": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "parameters_and_variables"
+		},
+		"annotations": []
+	}
+}

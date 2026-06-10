@@ -1,0 +1,27 @@
+{
+	"name": "pl_dynamic_binary_copy",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy from source blob to sink blob",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"enableStaging": false
+				}
+			}
+		],
+		"folder": {
+			"name": "dynamic_content"
+		},
+		"annotations": []
+	}
+}
