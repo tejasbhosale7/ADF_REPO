@@ -55,7 +55,7 @@
 				"typeProperties": {
 					"variableName": "current_ts",
 					"value": {
-						"value": "@addDays(utcNow(),3)",
+						"value": "@addDays(utcNow(),4)",
 						"type": "Expression"
 					}
 				}
