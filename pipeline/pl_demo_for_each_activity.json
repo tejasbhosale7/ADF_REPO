@@ -86,7 +86,10 @@
 		"parameters": {
 			"file_list": {
 				"type": "array",
-				"defaultValue": "[\"file_1\",\"inputEmp']"
+				"defaultValue": [
+					"file_1",
+					"inputEmp"
+				]
 			}
 		},
 		"folder": {
