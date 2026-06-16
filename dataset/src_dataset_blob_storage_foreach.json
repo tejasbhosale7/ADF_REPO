@@ -1,5 +1,5 @@
 {
-	"name": "src_dataset_blob_storage",
+	"name": "src_dataset_blob_storage_foreach",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
