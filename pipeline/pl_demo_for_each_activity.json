@@ -1,0 +1,47 @@
+{
+	"name": "pl_demo_for_each_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach item in file_list",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.file_list",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data from blob to SQL DB",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"enableStaging": false
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"file_list": {
+				"type": "array",
+				"defaultValue": "[\"file_1\",\"inputEmp']"
+			}
+		},
+		"folder": {
+			"name": "for_each_loop"
+		},
+		"annotations": []
+	}
+}
