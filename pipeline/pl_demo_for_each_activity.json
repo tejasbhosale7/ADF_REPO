@@ -60,7 +60,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"file_name": {
-											"value": "@concat(item(),'.csv')",
+											"value": "@concat(item(),'.txt')",
 											"type": "Expression"
 										}
 									}
