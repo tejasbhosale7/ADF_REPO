@@ -1,0 +1,28 @@
+{
+	"name": "src_dataset_sql_lookup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "lookup_demo"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "src_file",
+				"type": "varchar"
+			},
+			{
+				"name": "dst_file",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "lkp_file_details"
+		}
+	}
+}
