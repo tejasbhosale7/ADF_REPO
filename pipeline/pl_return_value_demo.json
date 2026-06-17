@@ -1,0 +1,61 @@
+{
+	"name": "pl_return_value_demo",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set pipeline return values",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "string_prv",
+							"value": {
+								"type": "String",
+								"content": "This is string"
+							}
+						},
+						{
+							"key": "exp_prv",
+							"value": {
+								"type": "Expression",
+								"content": "@utcNow()"
+							}
+						},
+						{
+							"key": "arr_prv",
+							"value": {
+								"type": "Array",
+								"content": [
+									{
+										"type": "String",
+										"content": "first"
+									},
+									{
+										"type": "String",
+										"content": "second"
+									},
+									{
+										"type": "String",
+										"content": "third"
+									}
+								]
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			}
+		],
+		"folder": {
+			"name": "return_values"
+		},
+		"annotations": []
+	}
+}
