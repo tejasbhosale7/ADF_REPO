@@ -1,0 +1,151 @@
+{
+	"name": "src_dataset_blob_get_metadata_demo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "get_metadata demo"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "money.csv",
+				"container": "source-files"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "State",
+				"type": "String"
+			},
+			{
+				"name": "Year",
+				"type": "String"
+			},
+			{
+				"name": "Totals.Capital outlay",
+				"type": "String"
+			},
+			{
+				"name": "Totals.Revenue",
+				"type": "String"
+			},
+			{
+				"name": "Totals.Expenditure",
+				"type": "String"
+			},
+			{
+				"name": "Totals.General expenditure",
+				"type": "String"
+			},
+			{
+				"name": "Totals.General revenue",
+				"type": "String"
+			},
+			{
+				"name": "Totals.Insurance trust  revenue",
+				"type": "String"
+			},
+			{
+				"name": "Totals.Intergovernmental",
+				"type": "String"
+			},
+			{
+				"name": "Totals.License tax",
+				"type": "String"
+			},
+			{
+				"name": "Totals.Selective sales tax",
+				"type": "String"
+			},
+			{
+				"name": "Totals.Tax",
+				"type": "String"
+			},
+			{
+				"name": "Details.Correction.Correction Total",
+				"type": "String"
+			},
+			{
+				"name": "Details.Education.Education Total",
+				"type": "String"
+			},
+			{
+				"name": "Details.Financial Aid.Assistance and Subsidies",
+				"type": "String"
+			},
+			{
+				"name": "Details.Financial Aid.Cash and Securities Total",
+				"type": "String"
+			},
+			{
+				"name": "Details.Health.Health Total Expenditure",
+				"type": "String"
+			},
+			{
+				"name": "Details.Intergovernmental.Intergovernmental Expenditure",
+				"type": "String"
+			},
+			{
+				"name": "Details.Intergovernmental.Intergovernmental to Combined and Unallocable",
+				"type": "String"
+			},
+			{
+				"name": "Details.Natural Resources.Natural Resources Construction",
+				"type": "String"
+			},
+			{
+				"name": "Details.Utilities.Utilities Current Operation",
+				"type": "String"
+			},
+			{
+				"name": "Details.Welfare.Welfare Institution Total Expenditure",
+				"type": "String"
+			},
+			{
+				"name": "Details.Natural Resources.Parks.Parks Total Expenditure",
+				"type": "String"
+			},
+			{
+				"name": "Details.Transportation.Highways.Highways Total Expenditure",
+				"type": "String"
+			},
+			{
+				"name": "Totals. Debt at end of fiscal year",
+				"type": "String"
+			},
+			{
+				"name": "Details.Insurance benefits and repayments",
+				"type": "String"
+			},
+			{
+				"name": "Details.Interest on debt",
+				"type": "String"
+			},
+			{
+				"name": "Details.Interest on general debt",
+				"type": "String"
+			},
+			{
+				"name": "Details.Miscellaneous general revenue",
+				"type": "String"
+			},
+			{
+				"name": "Details.Other taxes",
+				"type": "String"
+			},
+			{
+				"name": "Details.Police protection",
+				"type": "String"
+			}
+		]
+	}
+}
