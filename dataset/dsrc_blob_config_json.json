@@ -1,0 +1,52 @@
+{
+	"name": "dsrc_blob_config_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"container": {
+				"type": "string"
+			},
+			"file_name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "configurable_pipeline_demo"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().file_name",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().container",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"source_container": {
+					"type": "string"
+				},
+				"source_file_name": {
+					"type": "string"
+				},
+				"sink_container": {
+					"type": "string"
+				},
+				"sink_file_name": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
