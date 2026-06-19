@@ -15,7 +15,11 @@
 					"name": "srccsvinput"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "AggregateRevenue"
@@ -25,7 +29,11 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> srccsvinput",
-				"srccsvinput aggregate() ~> AggregateRevenue"
+				"srccsvinput aggregate() ~> AggregateRevenue",
+				"AggregateRevenue sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
