@@ -17,13 +17,7 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflow_demo1",
-						"type": "DataFlowReference",
-						"datasetParameters": {
-							"srccsvinput": {
-								"container": "source-files",
-								"file": "money.csv"
-							}
-						}
+						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,
