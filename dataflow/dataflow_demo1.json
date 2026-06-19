@@ -16,11 +16,16 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "AggregateRevenue"
+				}
+			],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> srccsvinput"
+				"     ignoreNoFilesFound: false) ~> srccsvinput",
+				"srccsvinput aggregate() ~> AggregateRevenue"
 			]
 		}
 	}
