@@ -24,6 +24,10 @@
 					"name": "tgtcsvoutput"
 				},
 				{
+					"dataset": {
+						"referenceName": "dsin_sql_df_demo_1",
+						"type": "DatasetReference"
+					},
 					"name": "TgtAllCols"
 				}
 			],
@@ -135,8 +139,15 @@
 				"     )) ~> tgtcsvoutput",
 				"SelectAllCols sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> TgtAllCols"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> TgtAllCols"
 			]
 		}
 	}
