@@ -15,12 +15,68 @@
 					"name": "srccsvinput"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"name": "tgtcsvoutput"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SelectCols"
+				},
+				{
+					"name": "AggCapacityOutlay"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          State as string,",
+				"          Year as short,",
+				"          {Totals.Capital outlay} as integer,",
+				"          {Totals.Revenue} as integer,",
+				"          {Totals.Expenditure} as integer,",
+				"          {Totals.General expenditure} as integer,",
+				"          {Totals.General revenue} as integer,",
+				"          {Totals.Insurance trust  revenue} as integer,",
+				"          {Totals.Intergovernmental} as integer,",
+				"          {Totals.License tax} as integer,",
+				"          {Totals.Selective sales tax} as integer,",
+				"          {Totals.Tax} as integer,",
+				"          {Details.Correction.Correction Total} as integer,",
+				"          {Details.Education.Education Total} as integer,",
+				"          {Details.Financial Aid.Assistance and Subsidies} as integer,",
+				"          {Details.Financial Aid.Cash and Securities Total} as integer,",
+				"          {Details.Health.Health Total Expenditure} as integer,",
+				"          {Details.Intergovernmental.Intergovernmental Expenditure} as integer,",
+				"          {Details.Intergovernmental.Intergovernmental to Combined and Unallocable} as integer,",
+				"          {Details.Natural Resources.Natural Resources Construction} as integer,",
+				"          {Details.Utilities.Utilities Current Operation} as integer,",
+				"          {Details.Welfare.Welfare Institution Total Expenditure} as integer,",
+				"          {Details.Natural Resources.Parks.Parks Total Expenditure} as integer,",
+				"          {Details.Transportation.Highways.Highways Total Expenditure} as integer,",
+				"          {Totals. Debt at end of fiscal year} as integer,",
+				"          {Details.Insurance benefits and repayments} as integer,",
+				"          {Details.Interest on debt} as integer,",
+				"          {Details.Interest on general debt} as integer,",
+				"          {Details.Miscellaneous general revenue} as integer,",
+				"          {Details.Other taxes} as integer,",
+				"          {Details.Police protection} as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> srccsvinput"
+				"     ignoreNoFilesFound: false) ~> srccsvinput",
+				"srccsvinput select(skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectCols",
+				"SelectCols aggregate(groupBy(Year),",
+				"     TotalCapacityOutlay = sum({Totals.Capital outlay})) ~> AggCapacityOutlay",
+				"AggCapacityOutlay sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Year,",
+				"          TotalCapacityOutlay",
+				"     )) ~> tgtcsvoutput"
 			]
 		}
 	}
