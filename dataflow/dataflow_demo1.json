@@ -40,6 +40,9 @@
 				},
 				{
 					"name": "SelectAllCols"
+				},
+				{
+					"name": "InsertTS"
 				}
 			],
 			"scriptLines": [
@@ -122,6 +125,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectAllCols",
+				"SelectAllCols derive(ExtDttm = currentTimestamp()) ~> InsertTS",
 				"AggCapacityOutlay sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
@@ -137,7 +141,7 @@
 				"          Year,",
 				"          TotalCapacityOutlay",
 				"     )) ~> tgtcsvoutput",
-				"SelectAllCols sink(allowSchemaDrift: true,",
+				"InsertTS sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
