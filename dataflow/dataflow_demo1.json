@@ -22,6 +22,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "tgtcsvoutput"
+				},
+				{
+					"dataset": {
+						"referenceName": "dsin_sql_df_demo",
+						"type": "DatasetReference"
+					},
+					"name": "TgtAllCols"
 				}
 			],
 			"transformations": [
@@ -30,6 +37,9 @@
 				},
 				{
 					"name": "AggCapacityOutlay"
+				},
+				{
+					"name": "SelectAllCols"
 				}
 			],
 			"scriptLines": [
@@ -69,10 +79,49 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> srccsvinput",
-				"srccsvinput select(skipDuplicateMapInputs: true,",
+				"srccsvinput select(mapColumn(",
+				"          Year,",
+				"          {Totals.Capital outlay}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectCols",
 				"SelectCols aggregate(groupBy(Year),",
 				"     TotalCapacityOutlay = sum({Totals.Capital outlay})) ~> AggCapacityOutlay",
+				"srccsvinput select(mapColumn(",
+				"          State,",
+				"          Year,",
+				"          Capital_outlay = {Totals.Capital outlay},",
+				"          Revenue = {Totals.Revenue},",
+				"          Expenditure = {Totals.Expenditure},",
+				"          General_expenditure = {Totals.General expenditure},",
+				"          General_revenue = {Totals.General revenue},",
+				"          Insurance_trust_revenue = {Totals.Insurance trust  revenue},",
+				"          Intergovernmental = {Totals.Intergovernmental},",
+				"          Totals_License_tax = {Totals.License tax},",
+				"          Selective_sales_tax = {Totals.Selective sales tax},",
+				"          Totals_Tax = {Totals.Tax},",
+				"          Correction_Total = {Details.Correction.Correction Total},",
+				"          Education_Total = {Details.Education.Education Total},",
+				"          Assistance_and_Subsidies = {Details.Financial Aid.Assistance and Subsidies},",
+				"          Cash_and_Securities_Total = {Details.Financial Aid.Cash and Securities Total},",
+				"          Health_Total_Expenditure = {Details.Health.Health Total Expenditure},",
+				"          Intergovernmental_Expenditure = {Details.Intergovernmental.Intergovernmental Expenditure},",
+				"          Intergovernmental_to_Combined_and_Unallocable = {Details.Intergovernmental.Intergovernmental to Combined and Unallocable},",
+				"          Natural_Resources_Construction = {Details.Natural Resources.Natural Resources Construction},",
+				"          Utilities_Current_Operation = {Details.Utilities.Utilities Current Operation},",
+				"          Welfare_Institution_Total_Expenditure = {Details.Welfare.Welfare Institution Total Expenditure},",
+				"          Parks_Total_Expenditure = {Details.Natural Resources.Parks.Parks Total Expenditure},",
+				"          Highways_Total_Expenditure = {Details.Transportation.Highways.Highways Total Expenditure},",
+				"          Debt = {Totals. Debt at end of fiscal year},",
+				"          Insurance_benefits_and_repayments = {Details.Insurance benefits and repayments},",
+				"          Interest_on_debt = {Details.Interest on debt},",
+				"          Interest_on_general_debt = {Details.Interest on general debt},",
+				"          Miscellaneous_general_revenue = {Details.Miscellaneous general revenue},",
+				"          Other_taxes = {Details.Other taxes},",
+				"          Police_protection = {Details.Police protection}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectAllCols",
 				"AggCapacityOutlay sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
@@ -87,7 +136,18 @@
 				"     mapColumn(",
 				"          Year,",
 				"          TotalCapacityOutlay",
-				"     )) ~> tgtcsvoutput"
+				"     )) ~> tgtcsvoutput",
+				"SelectAllCols sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> TgtAllCols"
 			]
 		}
 	}
