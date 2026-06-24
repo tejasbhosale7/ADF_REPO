@@ -17,6 +17,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "dsin_sql_df_demo",
+						"type": "DatasetReference"
+					},
 					"name": "tgtcsvoutput"
 				}
 			],
@@ -71,8 +75,15 @@
 				"     TotalCapacityOutlay = sum({Totals.Capital outlay})) ~> AggCapacityOutlay",
 				"AggCapacityOutlay sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          Year,",
 				"          TotalCapacityOutlay",
