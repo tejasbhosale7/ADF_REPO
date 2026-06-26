@@ -15,13 +15,21 @@
 					"name": "SrcMoviesJSON"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsrc_snf_demo2",
+						"type": "DatasetReference"
+					},
+					"name": "SinkMoviesJSON"
+				}
+			],
 			"transformations": [
 				{
-					"name": "SelJSONCols"
+					"name": "FlattenJSON"
 				},
 				{
-					"name": "FlattenJSON"
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -33,17 +41,49 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'singleDocument') ~> SrcMoviesJSON",
-				"FlattenJSON select(mapColumn(",
-				"          movies",
-				"     ),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> SelJSONCols",
 				"SrcMoviesJSON foldDown(unroll(movies.Ratings, movies),",
 				"     mapColumn(",
 				"          movies",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> FlattenJSON"
+				"     skipDuplicateMapOutputs: false) ~> FlattenJSON",
+				"FlattenJSON derive(ExtDttm = currentTimestamp()) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          ID as decimal(38,0),",
+				"          BOOK_ID as decimal(38,0),",
+				"          BEST_BOOK_ID as decimal(38,0),",
+				"          WORK_ID as decimal(38,0),",
+				"          BOOKS_COUNT as decimal(38,0),",
+				"          ISBN as string,",
+				"          ISBN13 as double,",
+				"          AUTHORS as string,",
+				"          ORIGINAL_PUBLICATION_YEAR as decimal(38,1),",
+				"          ORIGINAL_TITLE as string,",
+				"          TITLE as string,",
+				"          LANGUAGE_CODE as string,",
+				"          AVERAGE_RATING as decimal(38,2),",
+				"          RATINGS_COUNT as decimal(38,0),",
+				"          WORK_RATINGS_COUNT as decimal(38,0),",
+				"          WORK_TEXT_REVIEWS_COUNT as decimal(38,0),",
+				"          RATINGS_1 as decimal(38,0),",
+				"          RATINGS_2 as decimal(38,0),",
+				"          RATINGS_3 as decimal(38,0),",
+				"          RATINGS_4 as decimal(38,0),",
+				"          RATINGS_5 as decimal(38,0),",
+				"          IMAGE_URL as string,",
+				"          SMALL_IMAGE_URL as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     stageInsert: true) ~> SinkMoviesJSON"
 			]
 		}
 	}

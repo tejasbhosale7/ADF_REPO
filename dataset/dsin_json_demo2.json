@@ -1,0 +1,19 @@
+{
+	"name": "dsin_json_demo2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "dataflow_demo"
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "movies_ratings"
+		}
+	}
+}
