@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "dataflow_demo_1"
+			"name": "dataflow_demo"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",

@@ -1,0 +1,22 @@
+{
+	"name": "dataflow_demo2",
+	"properties": {
+		"folder": {
+			"name": "demo_2"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "SrcMoviesJSON"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> SrcMoviesJSON"
+			]
+		}
+	}
+}
