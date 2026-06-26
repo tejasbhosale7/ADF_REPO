@@ -12,8 +12,8 @@
 		"type": "SnowflakeV2Table",
 		"schema": [],
 		"typeProperties": {
-			"schema": "staging",
-			"table": "movies_ratings"
+			"schema": "",
+			"table": ""
 		}
 	}
 }
