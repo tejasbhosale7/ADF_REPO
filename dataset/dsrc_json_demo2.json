@@ -1,0 +1,22 @@
+{
+	"name": "dsrc_json_demo2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "dataflow_demo"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "movies-250.json",
+				"container": "source-files"
+			}
+		},
+		"schema": {}
+	}
+}

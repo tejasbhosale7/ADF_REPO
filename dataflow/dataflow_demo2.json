@@ -8,6 +8,10 @@
 		"typeProperties": {
 			"sources": [
 				{
+					"dataset": {
+						"referenceName": "dsrc_json_demo2",
+						"type": "DatasetReference"
+					},
 					"name": "SrcMoviesJSON"
 				}
 			],
@@ -15,7 +19,9 @@
 			"transformations": [],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> SrcMoviesJSON"
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> SrcMoviesJSON"
 			]
 		}
 	}
