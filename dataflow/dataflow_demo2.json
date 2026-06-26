@@ -41,7 +41,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'arrayOfDocuments') ~> SrcMoviesJSON",
-				"SrcMoviesJSON foldDown(unroll(movies),",
+				"SrcMoviesJSON foldDown(unrollMultiple(movies,movies.Ratings),",
 				"     mapColumn(",
 				"          Title = movies.Title,",
 				"          Year = movies.Year,",
