@@ -17,9 +17,9 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "dsin_json_demo2",
-						"type": "DatasetReference"
+					"linkedService": {
+						"referenceName": "Snowflake1",
+						"type": "LinkedServiceReference"
 					},
 					"name": "SinkMoviesJSON"
 				}
@@ -75,12 +75,16 @@
 				"FlattenJSON derive(ExtDttm = currentTimestamp()) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
 				"     format: 'table',",
+				"     tableName: 'MOVIES_REVIEW',",
+				"     schemaName: 'STAGING',",
+				"     deletable: false,",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     upsertable: false,",
+				"     recreate: true,",
+				"     store: 'snowflake',",
+				"     store: 'snowflakeV2',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     stageInsert: true) ~> SinkMoviesJSON"
