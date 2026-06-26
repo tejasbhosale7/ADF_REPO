@@ -16,12 +16,34 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "SelJSONCols"
+				},
+				{
+					"name": "FlattenJSON"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          date as string,",
+				"          movies as (Title as string, Year as string, Rated as string, Released as string, Runtime as string, Genre as string, Director as string, Writer as string, Actors as string, Plot as string, Language as string, Country as string, Awards as string, Poster as string, Ratings as (Source as string, Value as string)[], Metascore as string, imdbRating as string, imdbVotes as string, imdbID as string, Type as string, DVD as string, BoxOffice as string, Production as string, Website as string, Response as string)[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> SrcMoviesJSON"
+				"     documentForm: 'singleDocument') ~> SrcMoviesJSON",
+				"FlattenJSON select(mapColumn(",
+				"          movies",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelJSONCols",
+				"SrcMoviesJSON foldDown(unroll(movies.Ratings, movies),",
+				"     mapColumn(",
+				"          movies",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> FlattenJSON"
 			]
 		}
 	}
