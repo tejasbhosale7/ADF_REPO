@@ -12,9 +12,7 @@
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"fileName": "movies-250.json",
-				"container": "source-files"
+				"type": "AzureBlobStorageLocation"
 			}
 		},
 		"schema": {
