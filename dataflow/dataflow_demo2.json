@@ -33,7 +33,11 @@
 				}
 			],
 			"scriptLines": [
-				"source(useSchema: false,",
+				"source(output(",
+				"          date as date,",
+				"          movies as (Actors as string, Awards as string, BoxOffice as string, Country as string, DVD as string, Director as string, Genre as string, Language as string, Metascore as string, Plot as string, Poster as string, Production as string, Rated as string, Ratings as (Source as string, Value as string)[], Released as date, Response as boolean, Runtime as string, Title as string, Type as string, Website as string, Writer as string, Year as short, imdbID as string, imdbRating as double, imdbVotes as string)[]",
+				"     ),",
+				"     useSchema: false,",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
