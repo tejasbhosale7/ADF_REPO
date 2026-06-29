@@ -1,0 +1,94 @@
+{
+	"name": "dataflow_demo3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "AzureBlobStorage1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "SrcMoviesJSON"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureBlobStorage1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "SinkJSON"
+				}
+			],
+			"transformations": [
+				{
+					"name": "FLJSON"
+				},
+				{
+					"name": "filJSON"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          date as date,",
+				"          movies as (Actors as string, Awards as string, BoxOffice as string, Country as string, DVD as string, Director as string, Genre as string, Language as string, Metascore as string, Plot as string, Poster as string, Production as string, Rated as string, Ratings as (Source as string, Value as string)[], Released as date, Response as boolean, Runtime as string, Title as string, Type as string, Website as string, Writer as string, Year as short, imdbID as string, imdbRating as double, imdbVotes as string)[]",
+				"     ),",
+				"     useSchema: false,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'json',",
+				"     fileSystem: 'source-files',",
+				"     fileName: 'movies-250.json',",
+				"     documentForm: 'arrayOfDocuments') ~> SrcMoviesJSON",
+				"SrcMoviesJSON foldDown(unrollMultiple(movies,movies.Ratings),",
+				"     mapColumn(",
+				"          Actors = movies.Actors,",
+				"          Awards = movies.Awards,",
+				"          BoxOffice = movies.BoxOffice,",
+				"          Country = movies.Country,",
+				"          DVD = movies.DVD,",
+				"          Director = movies.Director,",
+				"          Genre = movies.Genre,",
+				"          Language = movies.Language,",
+				"          Metascore = movies.Metascore,",
+				"          Plot = movies.Plot,",
+				"          Production = movies.Production,",
+				"          Rated = movies.Rated,",
+				"          Rating_Source = movies.Ratings.Source,",
+				"          Rating_Value = movies.Ratings.Value,",
+				"          Released = movies.Released,",
+				"          Response = movies.Response,",
+				"          Runtime = movies.Runtime,",
+				"          Title = movies.Title,",
+				"          Type = movies.Type,",
+				"          Website = movies.Website,",
+				"          Writer = movies.Writer,",
+				"          Year = movies.Year,",
+				"          imdbID = movies.imdbID,",
+				"          imdbRating = movies.imdbRating,",
+				"          imdbVotes = movies.imdbVotes",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> FLJSON",
+				"FLJSON filter(Rating_Source=='Rotten Tomatoes') ~> filJSON",
+				"filJSON sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delta',",
+				"     fileSystem: 'target-files',",
+				"     folderPath: 'movie-ratings',",
+				"     mergeSchema: false,",
+				"     autoCompact: false,",
+				"     optimizedWrite: false,",
+				"     vacuum: 0,",
+				"     deletable: false,",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     upsertable: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkJSON"
+			]
+		}
+	}
+}
