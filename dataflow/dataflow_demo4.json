@@ -72,7 +72,7 @@
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     tableName: 'money_load',",
-				"     schemaName: 'staging',",
+				"     schemaName: 'STAGING',",
 				"     deletable: false,",
 				"     insertable: true,",
 				"     updateable: false,",
