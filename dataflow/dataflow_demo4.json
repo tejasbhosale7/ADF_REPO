@@ -67,7 +67,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     wildcardPaths:['*.csv']) ~> SrcDatewiseLoad",
-				"SrcDatewiseLoad derive(ExtDttm = currentUTC()) ~> addCurrentTs",
+				"SrcDatewiseLoad derive() ~> addCurrentTs",
 				"addCurrentTs sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
