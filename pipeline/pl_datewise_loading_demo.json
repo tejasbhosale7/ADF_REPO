@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy multiple files",
-				"type": "Copy",
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,52 +15,21 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"wildcardFileName": "*.csv",
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
-					},
-					"sink": {
-						"type": "SnowflakeV2Sink",
-						"importSettings": {
-							"type": "SnowflakeImportCopyCommand"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "dsrc_datewiseload_demo",
-						"type": "DatasetReference",
-						"parameters": {
-							"FolderPath": {
-								"value": "@formatDateTime(utcNow(), 'yyyyMMdd')",
-								"type": "Expression"
+					"dataflow": {
+						"referenceName": "dataflow_demo4",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"SrcDatewiseLoad": {
+								"FolderPath": "@formatDateTime(utcNow(),'yyyyMMdd')"
 							}
 						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "dsin_datewiseload_demo",
-						"type": "DatasetReference"
-					}
-				]
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
 			}
 		],
 		"annotations": []
