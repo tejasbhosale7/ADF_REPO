@@ -8,11 +8,7 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"linkedService": {
-						"referenceName": "AzureBlobStorage1",
-						"type": "LinkedServiceReference"
-					},
-					"name": "SrcDatewiseLoad"
+					"name": "source1"
 				}
 			],
 			"sinks": [
@@ -30,18 +26,9 @@
 				"     df_container as string,",
 				"     df_folder as string",
 				"}",
-				"source(useSchema: false,",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     format: 'delimited',",
-				"     fileSystem: ($df_container),",
-				"     columnDelimiter: ',',",
-				"     escapeChar: '\\\\',",
-				"     quoteChar: '\\\"',",
-				"     columnNamesAsHeader: false,",
-				"     wildcardPaths:[(concat($df_folder,'/','*.csv'))]) ~> SrcDatewiseLoad",
-				"SrcDatewiseLoad sink(allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     tableName: 'MONEY_LOAD',",
