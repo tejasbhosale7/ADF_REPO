@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "df_datewise_load",
+				"name": "df_datewiseload",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -18,13 +18,14 @@
 					"dataflow": {
 						"referenceName": "dataflow_demo4",
 						"type": "DataFlowReference",
-						"datasetParameters": {
-							"SrcDatewiseLoad": {
-								"FolderPath": {
-									"value": "@formatDateTime(utcNow(), 'yyyyMMdd')",
-									"type": "Expression"
-								},
-								"ContainerName": "source-files"
+						"parameters": {
+							"df_container": {
+								"value": "'@{pipeline().parameters.ContainerName}'",
+								"type": "Expression"
+							},
+							"df_folder": {
+								"value": "'@{pipeline().parameters.FolderPath}'",
+								"type": "Expression"
 							}
 						}
 					},
