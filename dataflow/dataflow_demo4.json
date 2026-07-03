@@ -24,11 +24,7 @@
 					"name": "sinDatewiseLoad"
 				}
 			],
-			"transformations": [
-				{
-					"name": "addCurrentTs"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
 				"          State as string,",
@@ -67,8 +63,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     wildcardPaths:['*.csv']) ~> SrcDatewiseLoad",
-				"SrcDatewiseLoad derive() ~> addCurrentTs",
-				"addCurrentTs sink(allowSchemaDrift: true,",
+				"SrcDatewiseLoad sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     tableName: 'MONEY_LOAD',",
