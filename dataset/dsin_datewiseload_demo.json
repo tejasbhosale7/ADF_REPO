@@ -1,0 +1,15 @@
+{
+	"name": "dsin_datewiseload_demo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "datewise_load"
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": []
+	}
+}
