@@ -20,11 +20,11 @@
 						"type": "DataFlowReference",
 						"parameters": {
 							"df_container": {
-								"value": "'@{source-files}'",
+								"value": "'@{pipeline().parameters.ContainerName}'",
 								"type": "Expression"
 							},
 							"df_folder": {
-								"value": "'@{formatDateTime(utcNow(), 'yyyy-MM-dd')}'",
+								"value": "'@{pipeline().parameters.FolderPath}'",
 								"type": "Expression"
 							}
 						}
@@ -38,11 +38,13 @@
 			}
 		],
 		"parameters": {
-			"ContainerName": {
-				"type": "string"
-			},
 			"FolderPath": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "@formatDateTime(utcNow(), 'yyyyMMdd')"
+			},
+			"ContainerName": {
+				"type": "string",
+				"defaultValue": "source-files"
 			}
 		},
 		"annotations": []
