@@ -20,7 +20,8 @@
 						"type": "DataFlowReference",
 						"datasetParameters": {
 							"SrcDatewiseLoad": {
-								"FolderPath": "@formatDateTime(utcNow(),'yyyyMMdd')"
+								"FolderPath": "@formatDateTime(utcNow(),'yyyyMMdd')",
+								"ContainerName": "source-files"
 							}
 						}
 					},
