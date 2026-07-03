@@ -71,7 +71,7 @@
 				"addCurrentTs sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
-				"     tableName: 'money_load',",
+				"     tableName: 'MONEY_LOAD',",
 				"     schemaName: 'STAGING',",
 				"     deletable: false,",
 				"     insertable: true,",
