@@ -8,6 +8,9 @@
 		"parameters": {
 			"FolderPath": {
 				"type": "string"
+			},
+			"ContainerName": {
+				"type": "string"
 			}
 		},
 		"folder": {
@@ -17,12 +20,7 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"folderPath": {
-					"value": "@dataset().FolderPath",
-					"type": "Expression"
-				},
-				"container": "source-files"
+				"type": "AzureBlobStorageLocation"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
