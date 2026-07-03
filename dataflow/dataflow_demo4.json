@@ -62,7 +62,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     wildcardPaths:['*.csv']) ~> SrcDatewiseLoad",
+				"     wildcardPaths:['money*.csv']) ~> SrcDatewiseLoad",
 				"SrcDatewiseLoad sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
