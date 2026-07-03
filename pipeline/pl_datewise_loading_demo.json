@@ -36,6 +36,14 @@
 				}
 			}
 		],
+		"parameters": {
+			"ContainerName": {
+				"type": "string"
+			},
+			"FolderPath": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
