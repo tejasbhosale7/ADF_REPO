@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Data flow1",
+				"name": "df_datewise_load",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -20,7 +20,10 @@
 						"type": "DataFlowReference",
 						"datasetParameters": {
 							"SrcDatewiseLoad": {
-								"FolderPath": "@formatDateTime(utcNow(),'yyyyMMdd')",
+								"FolderPath": {
+									"value": "@formatDateTime(utcNow(), 'yyyyMMdd')",
+									"type": "Expression"
+								},
 								"ContainerName": "source-files"
 							}
 						}
