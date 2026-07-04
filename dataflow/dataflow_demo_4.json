@@ -17,13 +17,6 @@
 			],
 			"sinks": [
 				{
-					"linkedService": {
-						"referenceName": "Snowflake1",
-						"type": "LinkedServiceReference"
-					},
-					"name": "sink1"
-				},
-				{
 					"dataset": {
 						"referenceName": "dsin_datewiseload_demo",
 						"type": "DatasetReference"
@@ -40,20 +33,6 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     wildcardPaths:['$pFolderPath/*.csv']) ~> srcDatewiseLoad",
-				" sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     format: 'table',",
-				"     tableName: 'MONEY_LOAD',",
-				"     schemaName: 'STAGING',",
-				"     deletable: false,",
-				"     insertable: true,",
-				"     updateable: false,",
-				"     upsertable: false,",
-				"     store: 'snowflake',",
-				"     store: 'snowflakeV2',",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     stageInsert: true) ~> sink1",
 				"srcDatewiseLoad sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
