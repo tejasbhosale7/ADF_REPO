@@ -12,8 +12,8 @@
 		"type": "SnowflakeV2Table",
 		"schema": [],
 		"typeProperties": {
-			"schema": "staging",
-			"table": "money_load"
+			"schema": "STAGING",
+			"table": "MONEY_LOAD"
 		}
 	}
 }

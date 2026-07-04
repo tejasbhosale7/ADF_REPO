@@ -12,7 +12,7 @@
 						"referenceName": "dsrc_datewiseload_demo",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "srcDatewiseLoad"
 				}
 			],
 			"sinks": [
@@ -22,14 +22,25 @@
 						"type": "LinkedServiceReference"
 					},
 					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "dsin_datewiseload_demo",
+						"type": "DatasetReference"
+					},
+					"name": "snkDatewiseLoad"
 				}
 			],
 			"transformations": [],
 			"scriptLines": [
+				"parameters{",
+				"     pFolderPath as string",
+				"}",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 sink(allowSchemaDrift: true,",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:['$pFolderPath/*.csv']) ~> srcDatewiseLoad",
+				" sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     tableName: 'MONEY_LOAD',",
@@ -42,7 +53,18 @@
 				"     store: 'snowflakeV2',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     stageInsert: true) ~> sink1"
+				"     stageInsert: true) ~> sink1",
+				"srcDatewiseLoad sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     stageInsert: true) ~> snkDatewiseLoad"
 			]
 		}
 	}
