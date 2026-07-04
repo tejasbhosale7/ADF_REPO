@@ -1,0 +1,28 @@
+{
+	"name": "df_datewiseload_demo",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsrc_datewiseload_demo",
+						"type": "DatasetReference"
+					},
+					"name": "srcBlob"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"parameters{",
+				"     pContainerName as string ('source-files'),",
+				"     pFolderPath as string (toString(currentUTC(), 'yyyyMMdd'))",
+				"}",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> srcBlob"
+			]
+		}
+	}
+}
