@@ -5,23 +5,54 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "dsrc_datewiseload_demo",
-						"type": "DatasetReference"
+					"linkedService": {
+						"referenceName": "AzureBlobStorage1",
+						"type": "LinkedServiceReference"
 					},
 					"name": "srcBlob"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "Snowflake1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "snkSnf"
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
 				"parameters{",
 				"     pContainerName as string ('source-files'),",
 				"     pFolderPath as string (toString(currentUTC(), 'yyyyMMdd'))",
 				"}",
-				"source(allowSchemaDrift: true,",
+				"source(useSchema: false,",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> srcBlob"
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'source-files',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: false,",
+				"     wildcardPaths:['concat(toString(currentUTC(), \\'yyyyMMdd\\'), \\'/*.csv\\')']) ~> srcBlob",
+				"srcBlob sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     tableName: 'MONEY_LOAD',",
+				"     schemaName: 'STAGING',",
+				"     deletable: false,",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     upsertable: false,",
+				"     recreate: true,",
+				"     store: 'snowflake',",
+				"     store: 'snowflakeV2',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     stageInsert: true) ~> snkSnf"
 			]
 		}
 	}
