@@ -29,7 +29,7 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     wildcardPaths:[(concat($pFolderPath,'/*.csv'))]) ~> srcDatewiseLoad",
+				"     wildcardPaths:['*.csv']) ~> srcDatewiseLoad",
 				"srcDatewiseLoad sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
