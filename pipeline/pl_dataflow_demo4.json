@@ -17,7 +17,12 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflow_demo_4",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"srcDatewiseLoad": {
+								"pFolderPath": "@formatDateTime(utcNow(),'yyyyMMdd')"
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
