@@ -5,9 +5,9 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"linkedService": {
-						"referenceName": "AzureBlobStorage1",
-						"type": "LinkedServiceReference"
+					"dataset": {
+						"referenceName": "dsrc_datewiseload_demo",
+						"type": "DatasetReference"
 					},
 					"name": "srcBlob"
 				}
@@ -23,20 +23,9 @@
 			],
 			"transformations": [],
 			"scriptLines": [
-				"parameters{",
-				"     pContainerName as string ('source-files'),",
-				"     pFolderPath as string (toString(currentUTC(), 'yyyyMMdd'))",
-				"}",
-				"source(useSchema: false,",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     format: 'delimited',",
-				"     fileSystem: 'source-files',",
-				"     columnDelimiter: ',',",
-				"     escapeChar: '\\\\',",
-				"     quoteChar: '\\\"',",
-				"     columnNamesAsHeader: false,",
 				"     wildcardPaths:['concat(toString(currentUTC(), \\'yyyyMMdd\\'), \\'/*.csv\\')']) ~> srcBlob",
 				"srcBlob sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",

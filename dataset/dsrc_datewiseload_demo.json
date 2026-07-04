@@ -5,6 +5,14 @@
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"df_container": {
+				"type": "string"
+			},
+			"df_folderpath": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "datewise_load"
 		},
@@ -12,7 +20,15 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation"
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().df_folderpath",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().df_container",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
