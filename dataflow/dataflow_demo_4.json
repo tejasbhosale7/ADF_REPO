@@ -1,0 +1,22 @@
+{
+	"name": "dataflow_demo_4",
+	"properties": {
+		"folder": {
+			"name": "demo_4"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1"
+			]
+		}
+	}
+}
