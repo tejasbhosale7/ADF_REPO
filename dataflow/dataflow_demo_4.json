@@ -39,7 +39,7 @@
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: false,",
-				"     wildcardPaths:['$pFolderPath/*.csv']) ~> srcDatewiseLoad",
+				"     wildcardPaths:[(concat($pFolderPath,'/*.csv'))]) ~> srcDatewiseLoad",
 				"srcDatewiseLoad sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
