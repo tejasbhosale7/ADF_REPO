@@ -8,9 +8,9 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"linkedService": {
-						"referenceName": "AzureBlobStorage1",
-						"type": "LinkedServiceReference"
+					"dataset": {
+						"referenceName": "dsrc_datewiseload_demo",
+						"type": "DatasetReference"
 					},
 					"name": "srcDatewiseLoad"
 				}
@@ -27,20 +27,12 @@
 			"transformations": [],
 			"scriptLines": [
 				"parameters{",
-				"     df_container as string,",
-				"     df_folder as string",
+				"     containerName as string,",
+				"     folderName as string",
 				"}",
-				"source(useSchema: false,",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     format: 'delimited',",
-				"     fileSystem: ($df_container),",
-				"     folderPath: ($df_folder),",
-				"     columnDelimiter: ',',",
-				"     escapeChar: '\\\\',",
-				"     quoteChar: '\\\"',",
-				"     columnNamesAsHeader: false) ~> srcDatewiseLoad",
+				"     ignoreNoFilesFound: false) ~> srcDatewiseLoad",
 				"srcDatewiseLoad sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table',",

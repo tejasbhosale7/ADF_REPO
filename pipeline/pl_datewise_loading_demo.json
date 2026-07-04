@@ -19,11 +19,11 @@
 						"referenceName": "dataflow_demo4",
 						"type": "DataFlowReference",
 						"parameters": {
-							"df_container": {
+							"containerName": {
 								"value": "@pipeline().parameters.ContainerName",
 								"type": "Expression"
 							},
-							"df_folder": {
+							"folderName": {
 								"value": "@pipeline().parameters.FolderPath",
 								"type": "Expression"
 							}

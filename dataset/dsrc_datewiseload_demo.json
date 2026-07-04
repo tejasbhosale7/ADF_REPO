@@ -6,10 +6,10 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"FolderPath": {
+			"df_folderpath": {
 				"type": "string"
 			},
-			"ContainerName": {
+			"df_container": {
 				"type": "string"
 			}
 		},
@@ -22,11 +22,11 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"folderPath": {
-					"value": "@dataset().FolderPath",
+					"value": "@dataset().df_folderpath",
 					"type": "Expression"
 				},
 				"container": {
-					"value": "@dataset().ContainerName",
+					"value": "@dataset().df_container",
 					"type": "Expression"
 				}
 			},
