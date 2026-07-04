@@ -28,8 +28,7 @@
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     wildcardPaths:['*.csv']) ~> srcDatewiseLoad",
+				"     ignoreNoFilesFound: false) ~> srcDatewiseLoad",
 				"srcDatewiseLoad sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
