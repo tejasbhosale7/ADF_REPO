@@ -26,9 +26,6 @@
 			],
 			"transformations": [],
 			"scriptLines": [
-				"parameters{",
-				"     pFolderPath as string",
-				"}",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
