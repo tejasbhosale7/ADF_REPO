@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "dsrc_datewiseload_demo",
+						"referenceName": "dsrc_date_demo",
 						"type": "DatasetReference"
 					},
 					"name": "srcBlob"
